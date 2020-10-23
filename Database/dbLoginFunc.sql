@@ -34,19 +34,18 @@ dataadmissaoFunc,datademissaoFunc,cargoFunc,permFunc,statusFunc) values (
 );
 
 create table tbLogin (
-idLogin int primary key auto_increment,
-idFunc int references tbFuncionario(idFunc),
-Usuario varchar(50),
-Senha varchar(12),
+usuario varchar(50) primary key,
+senha varchar(12),
+perm int,
 statusLogin varchar(25)
 );
 
 drop table tbLogin;
 select * from tbLogin;
 
-insert into tbLogin(idFunc,Usuario,Senha,statusLogin) values (
-2,
-"admin@gmail.com",
-"admin123",
+insert into tbLogin(usuario,senha,perm,statusLogin) values (
+"roberto@gmail.com",
+"roberto123",
+1,
 "On"
 );

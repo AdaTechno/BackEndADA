@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "principal";
+    //Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
+}
+
+
+Bem-vindo @ViewBag.usuarioLog
+
+
+<h2>Hub</h2>
+
+<br />
+@Html.ActionLink("Login", "Login", "Home")
+
+<br />
+@if (Session["tipoLogado2"] != null)
+{
+    @Html.ActionLink("Contato", "Contact", "Home")
+}
+
+<br />
+@Html.ActionLink("Logout", "Logout", "Home")

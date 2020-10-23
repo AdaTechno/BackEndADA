@@ -1,28 +1,107 @@
-﻿using System;
+﻿using JapanoriWebSystem.Models;
+using JapanoriWebSystem.Dados;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using JapanoriWebSystem.Views.Dados;
 
 namespace JapanoriWebSystem.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        acoesLogin acLg = new acoesLogin();
+
+        public ActionResult Login()
         {
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Login(modelLogin verLogin)
         {
-            ViewBag.Message = "Your application description page.";
+            acLg.TestarUsuario(verLogin);
 
-            return View();
+            if (verLogin.usuario != null && verLogin.senha != null)
+            {
+                FormsAuthentication.SetAuthCookie(verLogin.usuario, false);
+                Session["usuarioLogado"] = verLogin.usuario.ToString();
+                Session["senhaLogado"] = verLogin.senha.ToString();
+
+
+
+                if (verLogin.perm == "1")
+                {
+                    Session["tipoLogado1"] = verLogin.perm.ToString(); //=1;
+                }
+                else
+                {
+                    Session["tipoLogado2"] = verLogin.perm.ToString();//=2
+                }
+
+
+                return RedirectToAction("Hub", "Home");
+            }
+
+            else
+            {
+                ViewBag.msgLogar = "Usuário não encontrado. Verifique o nome do usuário e a senha";
+                return View();
+
+            }
+        }
+
+        public ActionResult Hub()
+        {
+            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
+
+            {
+                return RedirectToAction("semAcesso", "");
+            }
+            else
+            {
+
+                ViewBag.usuarioLog = Session["usuarioLogado"];
+                return View();
+            }
+
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
+            {
+                return RedirectToAction("semAcesso", "Home");
+            }
+            else
+            {
+                if (Session["tipoLogado2"] == null)
+                {
+                    return RedirectToAction("semAcesso", "Home");
+                }
+                else
+                {
+                    ViewBag.Message = "Your contact page.";
+
+                    return View();
+                }
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            Session["usuarioLogado"] = null;
+            Session["senhaLogado"] = null;
+            Session["tipoLogado1"] = null;
+            Session["tipoLogado2"] = null;
+            return RedirectToAction("Login", "Home");
+        }
+
+        public ActionResult semAcesso()
+        {
+            ViewBag.Message = "Você não pode acessar essa página";
 
             return View();
         }
