@@ -166,10 +166,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ComandaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Dados\acoesComanda.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\modelComanda.cs" />
     <Compile Include="Models\modelLogin.cs" />
+    <Compile Include="Models\modelProduto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dados\acoesLogin.cs" />
     <Compile Include="Dados\conexao.cs" />
@@ -185,6 +188,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include=".editorconfig" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -213,10 +217,12 @@
     <Content Include="Views\Home\semAcesso.cshtml" />
     <Content Include="Views\Home\Logout.cshtml" />
     <Content Include="Views\Shared\_LayoutPrincipal.cshtml" />
+    <Content Include="Views\Comanda\Consulta.cshtml" />
+    <Content Include="Views\Comanda\Inserir.cshtml" />
+    <Content Include="Views\Comanda\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Comanda\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

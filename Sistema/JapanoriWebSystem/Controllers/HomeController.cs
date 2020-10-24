@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using JapanoriWebSystem.Views.Dados;
 
 namespace JapanoriWebSystem.Controllers
 {
@@ -29,8 +28,6 @@ namespace JapanoriWebSystem.Controllers
                 FormsAuthentication.SetAuthCookie(verLogin.usuario, false);
                 Session["usuarioLogado"] = verLogin.usuario.ToString();
                 Session["senhaLogado"] = verLogin.senha.ToString();
-
-
 
                 if (verLogin.perm == "1")
                 {
@@ -58,7 +55,7 @@ namespace JapanoriWebSystem.Controllers
             if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
 
             {
-                return RedirectToAction("semAcesso", "");
+                return RedirectToAction("semAcesso", "Home");
             }
             else
             {

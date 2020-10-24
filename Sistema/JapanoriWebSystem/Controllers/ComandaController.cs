@@ -1,5 +1,8 @@
-﻿using System;
+﻿using JapanoriWebSystem.Dados;
+using JapanoriWebSystem.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,10 +11,70 @@ namespace JapanoriWebSystem.Controllers
 {
     public class ComandaController : Controller
     {
+        acoesComanda ac = new acoesComanda();
+        modelComanda db = new modelComanda();
+       
+
         // GET: Comanda
-        public ActionResult Index()
+        public ActionResult Consulta(string search)
         {
+            
+            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
+
+            {
+                return RedirectToAction("semAcesso", "Home");
+            }
+            else
+            {
+                ViewBag.usuarioLog = Session["usuarioLogado"];
+                ModelState.Clear();
+
+                return View(ac.BuscarComanda());
+            }
+        }
+        /*
+        [HttpPost]
+        public ActionResult Consulta(string searchString)
+        {
+            var idComanda = modelComanda.idComanda;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                idComanda =
+            }
             return View();
+        }*/
+
+        public ActionResult Inserir()
+        {
+            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
+
+            {
+                return RedirectToAction("semAcesso", "Home");
+            }
+            else
+            {
+
+                ViewBag.usuarioLog = Session["usuarioLogado"];
+                return View();
+            }
+        }
+
+        public ActionResult Editar()
+        {
+
+            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
+
+            {
+                return RedirectToAction("semAcesso", "Home");
+            }
+            else
+            {
+
+                ViewBag.usuarioLog = Session["usuarioLogado"];
+                return View();
+            }
+
         }
     }
 }

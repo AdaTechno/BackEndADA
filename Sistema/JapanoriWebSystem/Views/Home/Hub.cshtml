@@ -14,6 +14,18 @@ Bem-vindo @ViewBag.usuarioLog
 @Html.ActionLink("Login", "Login", "Home")
 
 <br />
+@Html.ActionLink("Consultar Comanda", "Consulta", "Comanda")
+
+<br />
+@Html.ActionLink("Inserir Comanda", "Inserir", "Comanda")
+
+<br />
+@if (Session["tipoLogado2"] != null)
+{
+    @Html.ActionLink("Editar Comanda", "Editar", "Comanda")
+}
+
+<br />
 @if (Session["tipoLogado2"] != null)
 {
     @Html.ActionLink("Contato", "Contact", "Home")

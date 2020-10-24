@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<JapanoriWebSystem.Models.modelComanda>
+
+
+@{
+    ViewBag.Title = "consultaComanda";
+}
+
+<h2>Consulta de Comanda</h2>
+
+<h3>Buscar por código</h3>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Procura por código: @Html.TextBox("searchIdComanda")
+        <input type="submit" value="Buscar" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idComanda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.situacaoComanda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statusComanda)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idComanda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.situacaoComanda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statusComanda)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.idComanda }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.idComanda }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+            </td>
+
+
+        </tr>
+
+    }
+
+
+
+
+
+
+
+
+
+</table>
