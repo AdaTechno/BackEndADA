@@ -16,7 +16,7 @@ namespace JapanoriWebSystem.Controllers
        
 
         // GET: Comanda
-        public ActionResult Consulta(string search)
+        public ActionResult Consulta()
         {
             
             if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
@@ -29,21 +29,28 @@ namespace JapanoriWebSystem.Controllers
                 ViewBag.usuarioLog = Session["usuarioLogado"];
                 ModelState.Clear();
 
-                return View(ac.BuscarComanda());
+                return View(Tuple.Create<modelComanda, IEnumerable<modelComanda>>(new modelComanda(), ac.BuscarComanda()));
             }
         }
-        /*
+        
         [HttpPost]
-        public ActionResult Consulta(string searchString)
+        public ActionResult Consulta(modelComanda xpto)
         {
-            var idComanda = modelComanda.idComanda;
+            
+            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
 
-            if (!String.IsNullOrEmpty(searchString))
             {
-                idComanda =
+                return RedirectToAction("semAcesso", "Home");
             }
-            return View();
-        }*/
+            else
+            {
+                ViewBag.usuarioLog = Session["usuarioLogado"];
+
+
+                ModelState.Clear();
+                return View(Tuple.Create<modelComanda,IEnumerable<modelComanda>>(new modelComanda(), ac.selecionarBuscaComanda(xpto)));
+            }
+        }
 
         public ActionResult Inserir()
         {
@@ -61,6 +68,23 @@ namespace JapanoriWebSystem.Controllers
         }
 
         public ActionResult Editar()
+        {
+
+            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
+
+            {
+                return RedirectToAction("semAcesso", "Home");
+            }
+            else
+            {
+
+                ViewBag.usuarioLog = Session["usuarioLogado"];
+                return View();
+            }
+
+        }
+
+        public ActionResult Excluir()
         {
 
             if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))

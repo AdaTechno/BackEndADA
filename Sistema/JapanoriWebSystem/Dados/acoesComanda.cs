@@ -40,17 +40,31 @@ namespace JapanoriWebSystem.Dados
             return comList;
         }
 
-        public DataTable selecionarBuscaComanda(modelComanda cm)
+        public List<modelComanda> selecionarBuscaComanda(modelComanda cm)
         {
+            List<modelComanda> comList = new List<modelComanda>();
+
             MySqlCommand cmd = new MySqlCommand("select * from tbComanda where idComanda=@idComanda", con.MyConectarBD());
 
             cmd.Parameters.Add("@idComanda", MySqlDbType.VarChar).Value = cm.idComanda;
 
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataTable comanda = new DataTable();
-            da.Fill(comanda);
+            MySqlDataAdapter sd = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            sd.Fill(dt);
             con.MyDesconectarBD();
-            return comanda;
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                comList.Add(
+                    new modelComanda
+                    {
+                        idComanda = Convert.ToString(dr["idComanda"]),
+                        situacaoComanda = Convert.ToString(dr["situacaoComanda"]),
+                        statusComanda = Convert.ToString(dr["statusComanda"])
+                    });
+            }
+            return comList;
         }
 
     }

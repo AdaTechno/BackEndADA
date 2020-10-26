@@ -220,6 +220,7 @@
     <Content Include="Views\Comanda\Consulta.cshtml" />
     <Content Include="Views\Comanda\Inserir.cshtml" />
     <Content Include="Views\Comanda\Editar.cshtml" />
+    <Content Include="Views\Comanda\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

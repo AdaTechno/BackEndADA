@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<JapanoriWebSystem.Models.modelComanda>
+@model Tuple<JapanoriWebSystem.Models.modelComanda, IEnumerable<JapanoriWebSystem.Models.modelComanda>>
 
 
 @{
@@ -10,28 +10,44 @@
 
 <h3>Buscar por código</h3>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Consulta", "Comanda", FormMethod.Post))
 {
-    <p>
-        Procura por código: @Html.TextBox("searchIdComanda")
-        <input type="submit" value="Buscar" />
-    </p>
+
+    <div>
+
+        @Html.EditorFor(Model => Model.Item1.idComanda, new
+
+   {
+
+       htmlAttributes = new { id = "txtCod", name = "txtCod", type = "text", @class = "form-control", placeholder = "Digite o código do paciente", required = "required", maxlength = "30" }
+   })
+
+        @Html.ValidationMessageFor(Model => Model.Item1.idComanda, "", new { @class = "text-danger" })
+
+    </div>
+
+    <br />
+    <input type="submit" value="Buscar">
+    <br />
+
 }
+
+
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idComanda)
+            @Html.DisplayNameFor(model => model.Item1.idComanda)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.situacaoComanda)
+            @Html.DisplayNameFor(model => model.Item1.situacaoComanda)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.statusComanda)
+            @Html.DisplayNameFor(model => model.Item1.statusComanda)
         </th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Item2)
     {
         <tr>
             <td>
@@ -53,13 +69,6 @@
         </tr>
 
     }
-
-
-
-
-
-
-
 
 
 </table>
