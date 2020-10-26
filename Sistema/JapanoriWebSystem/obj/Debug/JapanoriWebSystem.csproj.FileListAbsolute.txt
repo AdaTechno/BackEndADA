@@ -204,3 +204,7 @@ C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\System
 C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\System.Memory.xml
 C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\System.Numerics.Vectors.xml
 C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\EntityFramework.dll
+C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\EntityFramework.SqlServer.dll
+C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\EntityFramework.xml
+C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\EntityFramework.SqlServer.xml

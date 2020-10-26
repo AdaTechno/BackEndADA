@@ -15,7 +15,12 @@ namespace JapanoriWebSystem.DAL
         {
         }
 
-        public DbSet<tbComanda> Comandas { get; set; }
+        public DbSet<Comanda> Comandas { get; set; }
+        public DbSet<ComandaProduto> ComandaProdutos { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<ProdutoEstoque> ProdutoEstoques { get; set; }
+        public DbSet<Estoque> Estoques { get; set; }
+
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
