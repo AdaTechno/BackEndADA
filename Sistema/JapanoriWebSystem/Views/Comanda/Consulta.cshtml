@@ -10,25 +10,26 @@
 
 <h3>Buscar por código</h3>
 
-@using (Html.BeginForm("Consulta", "Comanda", FormMethod.Post))
+@using (Html.BeginForm("Consulta", "Comanda",FormMethod.Post))
 {
 
-    <div>
+        <div>
 
-        @Html.EditorFor(Model => Model.Item1.idComanda, new
+            @Html.EditorFor(modelItem => item.idComanda, new
 
-   {
+       {
 
-       htmlAttributes = new { id = "txtCod", name = "txtCod", type = "text", @class = "form-control", placeholder = "Digite o código do paciente", required = "required", maxlength = "30" }
-   })
+           htmlAttributes = new { id = "txtCod", name = "txtCod", type = "text", @class = "form-control", placeholder = "Digite o código do paciente", required = "required", maxlength = "30" }
+       })
 
-        @Html.ValidationMessageFor(Model => Model.Item1.idComanda, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(modelItem => item.idComanda, "", new { @class = "text-danger" })
 
-    </div>
+        </div>
 
-    <br />
-    <input type="submit" value="Buscar">
-    <br />
+        <br />
+        <input type="submit" value="Buscar">
+        <br />
+    
 
 }
 

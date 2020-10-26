@@ -42,6 +42,7 @@ namespace JapanoriWebSystem.Dados
 
         public List<modelComanda> selecionarBuscaComanda(modelComanda cm)
         {
+            
             List<modelComanda> comList = new List<modelComanda>();
 
             MySqlCommand cmd = new MySqlCommand("select * from tbComanda where idComanda=@idComanda", con.MyConectarBD());

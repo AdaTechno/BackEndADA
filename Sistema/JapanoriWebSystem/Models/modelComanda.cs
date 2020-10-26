@@ -10,6 +10,5 @@ namespace JapanoriWebSystem.Models
         public string idComanda { get; set; }
         public string situacaoComanda { get; set; }
         public string statusComanda { get; set; }
-        public string Código { get; set; }
     }
 }
