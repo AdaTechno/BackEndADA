@@ -20,7 +20,7 @@ namespace JapanoriWebSystem.Controllers
         // GET: Comanda
         public ActionResult Index()
         {
-            //Database.SetInitializer(new DropCreateDatabaseAlways<JapanoriContext>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<JapanoriContext>());
             return View(db.Comandas.ToList());
         }
 

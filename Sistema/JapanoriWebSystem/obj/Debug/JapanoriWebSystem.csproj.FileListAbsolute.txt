@@ -275,4 +275,3 @@ C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\pt-BR\
 C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\gusta\Documentos\GitHub\BackEndADA\Sistema\JapanoriWebSystem\obj\Debug\JapanoriWebSystem.csprojAssemblyReference.cache
