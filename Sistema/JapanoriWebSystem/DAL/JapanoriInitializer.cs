@@ -7,7 +7,7 @@ using JapanoriWebSystem.Models;
 
 namespace JapanoriWebSystem.DAL
 {
-    public class JapanoriInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<JapanoriContext>
+    public class JapanoriInitializer : DropCreateDatabaseIfModelChanges<JapanoriContext>
     {
         protected override void Seed(JapanoriContext context)
         {
@@ -22,7 +22,6 @@ namespace JapanoriWebSystem.DAL
             new Comanda{ID=1050,Situacao="Vazia",Status="On"},
             new Comanda{ID=1060,Situacao="Vazia",Status="On"},
             };
-
             comandas.ForEach(s => context.Comandas.Add(s));
             context.SaveChanges();
 
@@ -45,18 +44,20 @@ namespace JapanoriWebSystem.DAL
                 new ComandaProduto{ComandaID=1010,ProdutoID=2},
                 new ComandaProduto{ComandaID=1020,ProdutoID=1},
                 new ComandaProduto{ComandaID=1030,ProdutoID=2},
-                new ComandaProduto{ComandaID=1040,ProdutoID=0},
-                new ComandaProduto{ComandaID=1050,ProdutoID=0},
-                new ComandaProduto{ComandaID=1060,ProdutoID=0}
+                new ComandaProduto{ComandaID=1040},
+                new ComandaProduto{ComandaID=1050},
+                new ComandaProduto{ComandaID=1060}
             };
+            comandaprodutos.ForEach(s => context.ComandaProdutos.Add(s));
+            context.SaveChanges();
 
             // Insert de Itens do Estoque no banco de dados
             var itens = new List<Estoque>
             {
-            new Estoque{Nome="Coca-Cola Lata 350ml",Quantidade=50,TipoQuantidade=TipoQuantidade.Unidades},
-            new Estoque{Nome="Salmão",Quantidade=30,TipoQuantidade=TipoQuantidade.Quilos},
-            new Estoque{Nome="Alga Marinha",Quantidade=10,TipoQuantidade=TipoQuantidade.Quilos},
-            new Estoque{Nome="Cream Cheese",Quantidade=5,TipoQuantidade=TipoQuantidade.Litros}
+            new Estoque{Nome="Coca-Cola Lata 350ml",Quantidade=50,TipoQuantidade=TipoQuantidade.Unidades,UltimoCarregamento=DateTime.Parse("2020-10-26"),Status="On"},
+            new Estoque{Nome="Salmão",Quantidade=30,TipoQuantidade=TipoQuantidade.Quilos,UltimoCarregamento=DateTime.Parse("2020-10-26"),Status="On"},
+            new Estoque{Nome="Alga Marinha",Quantidade=10,TipoQuantidade=TipoQuantidade.Quilos,UltimoCarregamento=DateTime.Parse("2020-10-26"),Status="On"},
+            new Estoque{Nome="Cream Cheese",Quantidade=5,TipoQuantidade=TipoQuantidade.Litros,UltimoCarregamento=DateTime.Parse("2020-10-26"),Status="On"}
             };
             itens.ForEach(s => context.Estoques.Add(s));
             context.SaveChanges();

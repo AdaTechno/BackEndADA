@@ -5,7 +5,7 @@
 }
 
 
-Bem-vindo, @ViewBag.usuarioLog
+<!--Bem-vindo, @ViewBag.usuarioLog-->
 
 
 <h2>Hub</h2>
@@ -14,22 +14,13 @@ Bem-vindo, @ViewBag.usuarioLog
 @Html.ActionLink("Login", "Login", "Home")
 
 <br />
-@Html.ActionLink("Consultar Comanda", "Consulta", "Comanda")
+@Html.ActionLink("Consultar Comanda", "Index", "Comanda")
 
 <br />
-@Html.ActionLink("Inserir Comanda", "Inserir", "Comanda")
+@Html.ActionLink("Inserir Comanda", "Create", "Comanda")
 
 <br />
-@if (Session["tipoLogado2"] != null)
-{
-    @Html.ActionLink("Editar Comanda", "Editar", "Comanda")
-}
-
-<br />
-@if (Session["tipoLogado2"] != null)
-{
-    @Html.ActionLink("Contato", "Contact", "Home")
-}
+@Html.ActionLink("Contato", "Contact", "Home")
 
 <br />
 @Html.ActionLink("Logout", "Logout", "Home")

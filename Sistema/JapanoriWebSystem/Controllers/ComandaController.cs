@@ -1,104 +1,131 @@
-﻿using JapanoriWebSystem.Dados;
-using JapanoriWebSystem.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using JapanoriWebSystem.DAL;
+using JapanoriWebSystem.Models;
 
 namespace JapanoriWebSystem.Controllers
 {
     public class ComandaController : Controller
     {
-        acoesComanda ac = new acoesComanda();
-        modelComanda db = new modelComanda();
-       
+#pragma warning disable IDE0044 // Adicionar modificador somente leitura
+        private JapanoriContext db = new JapanoriContext();
+#pragma warning restore IDE0044 // Adicionar modificador somente leitura
 
         // GET: Comanda
-        public ActionResult Consulta()
+        public ActionResult Index()
         {
-            
-            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
-
-            {
-                return RedirectToAction("semAcesso", "Home");
-            }
-            else
-            {
-                ViewBag.usuarioLog = Session["usuarioLogado"];
-                ModelState.Clear();
-
-                return View(Tuple.Create<modelComanda, IEnumerable<modelComanda>>(new modelComanda(), ac.BuscarComanda()));
-            }
+            //Database.SetInitializer(new DropCreateDatabaseAlways<JapanoriContext>());
+            return View(db.Comandas.ToList());
         }
-        
+
+        // GET: Comanda/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comanda comanda = db.Comandas.Find(id);
+            if (comanda == null)
+            {
+                return HttpNotFound();
+            }
+            return View(comanda);
+        }
+
+        // GET: Comanda/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Comanda/Create
+        // Para proteger-se contra ataques de excesso de postagem, ative as propriedades específicas às quais deseja se associar. 
+        // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Consulta(modelComanda xpto)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,Situacao,Status")] Comanda comanda)
         {
-            
-            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
-
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("semAcesso", "Home");
+                db.Comandas.Add(comanda);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            else
-            {
-                ViewBag.usuarioLog = Session["usuarioLogado"];
 
-
-                ModelState.Clear();
-                return View(Tuple.Create<modelComanda,IEnumerable<modelComanda>>(new modelComanda(), ac.selecionarBuscaComanda(xpto)));
-            }
+            return View(comanda);
         }
 
-        public ActionResult Inserir()
+        // GET: Comanda/Edit/5
+        public ActionResult Edit(int? id)
         {
-            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
-
+            if (id == null)
             {
-                return RedirectToAction("semAcesso", "Home");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else
+            Comanda comanda = db.Comandas.Find(id);
+            if (comanda == null)
             {
-
-                ViewBag.usuarioLog = Session["usuarioLogado"];
-                return View();
+                return HttpNotFound();
             }
+            return View(comanda);
         }
 
-        public ActionResult Editar()
+        // POST: Comanda/Edit/5
+        // Para proteger-se contra ataques de excesso de postagem, ative as propriedades específicas às quais deseja se associar. 
+        // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ID,Situacao,Status")] Comanda comanda)
         {
-
-            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
-
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("semAcesso", "Home");
+                db.Entry(comanda).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            else
-            {
-
-                ViewBag.usuarioLog = Session["usuarioLogado"];
-                return View();
-            }
-
+            return View(comanda);
         }
 
-        public ActionResult Excluir()
+        // GET: Comanda/Delete/5
+        public ActionResult Delete(int? id)
         {
-
-            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
-
+            if (id == null)
             {
-                return RedirectToAction("semAcesso", "Home");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else
+            Comanda comanda = db.Comandas.Find(id);
+            if (comanda == null)
             {
-
-                ViewBag.usuarioLog = Session["usuarioLogado"];
-                return View();
+                return HttpNotFound();
             }
+            return View(comanda);
+        }
 
+        // POST: Comanda/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Comanda comanda = db.Comandas.Find(id);
+            db.Comandas.Remove(comanda);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

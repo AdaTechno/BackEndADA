@@ -11,7 +11,7 @@ namespace JapanoriWebSystem.DAL
     public class JapanoriContext : DbContext
     {
 
-        public JapanoriContext() : base("JapanoriContext")
+        public JapanoriContext() : base()
         {
         }
 

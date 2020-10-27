@@ -1,5 +1,4 @@
 ﻿using JapanoriWebSystem.Models;
-using JapanoriWebSystem.Dados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +10,17 @@ namespace JapanoriWebSystem.Controllers
 {
     public class HomeController : Controller
     {
-        acoesLogin acLg = new acoesLogin();
+        //acoesLogin acLg = new acoesLogin();
 
         public ActionResult Login()
         {
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Login(modelLogin verLogin)
         {
-            acLg.TestarUsuario(verLogin);
+            /*acLg.TestarUsuario(verLogin);
 
             if (verLogin.usuario != null && verLogin.senha != null)
             {
@@ -48,11 +47,12 @@ namespace JapanoriWebSystem.Controllers
                 return View();
 
             }
-        }
+            return View();
+        }*/
 
         public ActionResult Hub()
         {
-            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
+            /*if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
 
             {
                 return RedirectToAction("semAcesso", "Home");
@@ -62,13 +62,13 @@ namespace JapanoriWebSystem.Controllers
 
                 ViewBag.usuarioLog = Session["usuarioLogado"];
                 return View();
-            }
-
+            }*/
+            return View();
         }
 
         public ActionResult Contact()
         {
-            if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
+            /*if ((Session["usuarioLogado"] == null) || (Session["senhaLogado"] == null))
             {
                 return RedirectToAction("semAcesso", "Home");
             }
@@ -84,19 +84,23 @@ namespace JapanoriWebSystem.Controllers
 
                     return View();
                 }
-            }
+            }*/
+            return View();
         }
 
         public ActionResult Logout()
         {
-            Session["usuarioLogado"] = null;
+            /*Session["usuarioLogado"] = null;
             Session["senhaLogado"] = null;
             Session["tipoLogado1"] = null;
             Session["tipoLogado2"] = null;
+            return RedirectToAction("Login", "Home");*/
             return RedirectToAction("Login", "Home");
         }
 
+#pragma warning disable IDE1006 // Estilos de Nomenclatura
         public ActionResult semAcesso()
+#pragma warning restore IDE1006 // Estilos de Nomenclatura
         {
             ViewBag.Message = "Você não pode acessar essa página";
 
