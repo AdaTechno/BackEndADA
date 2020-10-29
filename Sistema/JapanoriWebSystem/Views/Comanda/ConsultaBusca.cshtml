@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<JapanoriWebSystem.Models.modelComanda>
+
+
+@{
+    ViewBag.Title = "consultaComanda";
+}
+
+<h2>Consulta de Comanda</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Item1.idComanda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item1.situacaoComanda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item1.statusComanda)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Item2)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idComanda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.situacaoComanda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statusComanda)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Editar", "Comanda", new { id = item.idComanda }) |
+                @Html.ActionLink("Excluir", "Excluir", "Comanda", new { id = item.idComanda }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+            </td>
+
+
+        </tr>
+
+    }
+
+
+</table>

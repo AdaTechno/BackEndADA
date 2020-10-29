@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
-    @Styles.Render("~/Content/css")
+
+    @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,9 +23,40 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Hub", "Hub", "Home")</li>
-                    <li>@Html.ActionLink("Comandas", "Index", "Comanda")</li>
-                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    <li>
+                        @Html.ActionLink("Início", "Hub", "Home")
+                    </li>
+                    <li>
+                        <a href="#">
+                            Comanda
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Consultar", "Index", "Comanda")</li>
+                            <li>@Html.ActionLink("Consultar", "Create", "Comanda")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Cadastro
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Reservas", "cadastroReserva", "Reserva")</li>
+                            <li>@Html.ActionLink("Produto", "cadastroProduto", "Produto")</li>
+                            <li>@Html.ActionLink("Fornecedor", "cadastroFornecedor", "Fornecedor")</li>
+                            <li>@Html.ActionLink("Funcionário", "cadastroFuncionario", "Funcionario")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Consulta
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Reservas", "cadastroReserva", "Reserva")</li>
+                            <li>@Html.ActionLink("Produto", "cadastroProduto", "Produto")</li>
+                            <li>@Html.ActionLink("Fornecedor", "cadastroFornecedor", "Fornecedor")</li>
+                            <li>@Html.ActionLink("Funcionário", "cadastroFuncionario", "Funcionario")</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -35,6 +68,7 @@
             <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
         </footer>
     </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
